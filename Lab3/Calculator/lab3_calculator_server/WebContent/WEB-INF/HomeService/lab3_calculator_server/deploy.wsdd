@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from HomeService WSDL service -->
+
+  <service name="Home" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://lab3_calculator_server"/>
+      <parameter name="wsdlServiceElement" value="HomeService"/>
+      <parameter name="schemaQualified" value="http://lab3_calculator_server"/>
+      <parameter name="wsdlServicePort" value="Home"/>
+      <parameter name="className" value="lab3_calculator_server.Home"/>
+      <parameter name="wsdlPortType" value="Home"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://lab3_calculator_server" xmlns:retNS="http://lab3_calculator_server" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="home" qname="operNS:home" returnQName="retNS:homeReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://lab3_calculator_server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:source" type="tns:double"/>
+        <parameter xmlns:pns="http://lab3_calculator_server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:destination" type="tns:double"/>
+        <parameter xmlns:pns="http://lab3_calculator_server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:opcode" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="home"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://lab3_ebay_server" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://lab3_ebay_server" xmlns:intf="http://lab3_ebay_server" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://lab3_ebay_server" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="register">
+    <complexType>
+     <sequence>
+      <element name="uname" type="xsd:string"/>
+      <element name="pwd_encrypted" type="xsd:string"/>
+      <element name="fname" type="xsd:string"/>
+      <element name="lname" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="bdate" type="xsd:string"/>
+      <element name="ulocation" type="xsd:string"/>
+      <element name="contact" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registerResponse">
+    <complexType>
+     <sequence>
+      <element name="registerReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="pwd_encrypted" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getprofile">
+    <complexType>
+     <sequence>
+      <element name="passing_param" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getprofileResponse">
+    <complexType>
+     <sequence>
+      <element name="getprofileReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getmyads">
+    <complexType>
+     <sequence>
+      <element name="passing_param" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getmyadsResponse">
+    <complexType>
+     <sequence>
+      <element name="getmyadsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createad">
+    <complexType>
+     <sequence>
+      <element name="shandle" type="xsd:string"/>
+      <element name="suname" type="xsd:string"/>
+      <element name="ptitle" type="xsd:string"/>
+      <element name="pdesc" type="xsd:string"/>
+      <element name="pqty" type="xsd:string"/>
+      <element name="pprice" type="xsd:string"/>
+      <element name="semail" type="xsd:string"/>
+      <element name="ptype" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createadResponse">
+    <complexType>
+     <sequence>
+      <element name="createadReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getads">
+    <complexType>
+     <sequence>
+      <element name="passing_param" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getadsResponse">
+    <complexType>
+     <sequence>
+      <element name="getadsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addtocart">
+    <complexType>
+     <sequence>
+      <element name="prodid" type="xsd:string"/>
+      <element name="prodqty" type="xsd:string"/>
+      <element name="prodname" type="xsd:string"/>
+      <element name="proddesc" type="xsd:string"/>
+      <element name="prodprice" type="xsd:string"/>
+      <element name="prodseller_uname" type="xsd:string"/>
+      <element name="prodseller_email" type="xsd:string"/>
+      <element name="prod_total_qty" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addtocartResponse">
+    <complexType>
+     <sequence>
+      <element name="addtocartReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getthecart">
+    <complexType>
+     <sequence>
+      <element name="passing_param" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getthecartResponse">
+    <complexType>
+     <sequence>
+      <element name="getthecartReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="placebid">
+    <complexType>
+     <sequence>
+      <element name="prodid" type="xsd:string"/>
+      <element name="prodqty" type="xsd:string"/>
+      <element name="prodname" type="xsd:string"/>
+      <element name="proddesc" type="xsd:string"/>
+      <element name="prodprice" type="xsd:string"/>
+      <element name="prodseller_uname" type="xsd:string"/>
+      <element name="prodseller_email" type="xsd:string"/>
+      <element name="prod_total_qty" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="placebidResponse">
+    <complexType>
+     <sequence>
+      <element name="placebidReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="finalcheckout">
+    <complexType>
+     <sequence>
+      <element name="product_id" type="xsd:string"/>
+      <element name="product_name" type="xsd:string"/>
+      <element name="product_qty" type="xsd:string"/>
+      <element name="product_price" type="xsd:string"/>
+      <element name="buyer_name" type="xsd:string"/>
+      <element name="seller_name" type="xsd:string"/>
+      <element name="totalamt" type="xsd:string"/>
+      <element name="totalitems" type="xsd:string"/>
+      <element name="buyer_address" type="xsd:string"/>
+      <element name="bill_payment" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="finalcheckoutResponse">
+    <complexType>
+     <sequence>
+      <element name="finalcheckoutReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addaddresstodb">
+    <complexType>
+     <sequence>
+      <element name="address1" type="xsd:string"/>
+      <element name="address2" type="xsd:string"/>
+      <element name="address3" type="xsd:string"/>
+      <element name="address4" type="xsd:string"/>
+      <element name="address5" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addaddresstodbResponse">
+    <complexType>
+     <sequence>
+      <element name="addaddresstodbReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getprofileRequest">
+
+      <wsdl:part element="impl:getprofile" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getadsResponse">
+
+      <wsdl:part element="impl:getadsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getmyadsRequest">
+
+      <wsdl:part element="impl:getmyads" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addtocartRequest">
+
+      <wsdl:part element="impl:addtocart" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addtocartResponse">
+
+      <wsdl:part element="impl:addtocartResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="finalcheckoutRequest">
+
+      <wsdl:part element="impl:finalcheckout" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="finalcheckoutResponse">
+
+      <wsdl:part element="impl:finalcheckoutResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addaddresstodbResponse">
+
+      <wsdl:part element="impl:addaddresstodbResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getmyadsResponse">
+
+      <wsdl:part element="impl:getmyadsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addaddresstodbRequest">
+
+      <wsdl:part element="impl:addaddresstodb" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getadsRequest">
+
+      <wsdl:part element="impl:getads" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getthecartRequest">
+
+      <wsdl:part element="impl:getthecart" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createadResponse">
+
+      <wsdl:part element="impl:createadResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="placebidResponse">
+
+      <wsdl:part element="impl:placebidResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getthecartResponse">
+
+      <wsdl:part element="impl:getthecartResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createadRequest">
+
+      <wsdl:part element="impl:createad" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registerRequest">
+
+      <wsdl:part element="impl:register" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getprofileResponse">
+
+      <wsdl:part element="impl:getprofileResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="placebidRequest">
+
+      <wsdl:part element="impl:placebid" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registerResponse">
+
+      <wsdl:part element="impl:registerResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="services">
+
+      <wsdl:operation name="register">
+
+         <wsdl:input message="impl:registerRequest" name="registerRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registerResponse" name="registerResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getprofile">
+
+         <wsdl:input message="impl:getprofileRequest" name="getprofileRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getprofileResponse" name="getprofileResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getmyads">
+
+         <wsdl:input message="impl:getmyadsRequest" name="getmyadsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getmyadsResponse" name="getmyadsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createad">
+
+         <wsdl:input message="impl:createadRequest" name="createadRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createadResponse" name="createadResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getads">
+
+         <wsdl:input message="impl:getadsRequest" name="getadsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getadsResponse" name="getadsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addtocart">
+
+         <wsdl:input message="impl:addtocartRequest" name="addtocartRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addtocartResponse" name="addtocartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getthecart">
+
+         <wsdl:input message="impl:getthecartRequest" name="getthecartRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getthecartResponse" name="getthecartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="placebid">
+
+         <wsdl:input message="impl:placebidRequest" name="placebidRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:placebidResponse" name="placebidResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="finalcheckout">
+
+         <wsdl:input message="impl:finalcheckoutRequest" name="finalcheckoutRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:finalcheckoutResponse" name="finalcheckoutResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addaddresstodb">
+
+         <wsdl:input message="impl:addaddresstodbRequest" name="addaddresstodbRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addaddresstodbResponse" name="addaddresstodbResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="servicesSoapBinding" type="impl:services">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="register">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registerRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registerResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getprofile">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getprofileRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getprofileResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getmyads">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getmyadsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getmyadsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createad">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getads">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getadsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getadsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addtocart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addtocartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addtocartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getthecart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getthecartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getthecartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="placebid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="placebidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="placebidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="finalcheckout">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="finalcheckoutRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="finalcheckoutResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addaddresstodb">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addaddresstodbRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addaddresstodbResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="servicesService">
+
+      <wsdl:port binding="impl:servicesSoapBinding" name="services">
+
+         <wsdlsoap:address location="http://localhost:8080/lab3_ebay_server/services/services"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

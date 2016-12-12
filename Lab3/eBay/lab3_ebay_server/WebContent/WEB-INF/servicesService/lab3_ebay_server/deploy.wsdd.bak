@@ -1,0 +1,102 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from servicesService WSDL service -->
+
+  <service name="services" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://lab3_ebay_server"/>
+      <parameter name="wsdlServiceElement" value="servicesService"/>
+      <parameter name="schemaQualified" value="http://lab3_ebay_server"/>
+      <parameter name="wsdlServicePort" value="services"/>
+      <parameter name="className" value="lab3_ebay_server.ServicesSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="services"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="register" qname="operNS:register" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:registerReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pwd_encrypted" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:bdate" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ulocation" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:contact" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="login" qname="operNS:login" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:loginReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pwd_encrypted" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getprofile" qname="operNS:getprofile" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:getprofileReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:passing_param" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getmyads" qname="operNS:getmyads" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:getmyadsReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:passing_param" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createad" qname="operNS:createad" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:createadReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:shandle" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:suname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ptitle" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pdesc" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pqty" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pprice" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:semail" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ptype" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getads" qname="operNS:getads" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:getadsReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:passing_param" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addtocart" qname="operNS:addtocart" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:addtocartReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:prodid" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodqty" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:proddesc" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodprice" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodseller_uname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodseller_email" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prod_total_qty" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getthecart" qname="operNS:getthecart" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:getthecartReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:passing_param" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="placebid" qname="operNS:placebid" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:placebidReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:prodid" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodqty" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:proddesc" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodprice" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodseller_uname" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodseller_email" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prod_total_qty" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="finalcheckout" qname="operNS:finalcheckout" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:finalcheckoutReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:product_id" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:product_name" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:product_qty" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:product_price" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:buyer_name" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:seller_name" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:totalamt" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:totalitems" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:buyer_address" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:bill_payment" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addaddresstodb" qname="operNS:addaddresstodb" xmlns:operNS="http://lab3_ebay_server" returnQName="retNS:addaddresstodbReturn" xmlns:retNS="http://lab3_ebay_server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:address1" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address2" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address3" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address4" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address5" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://lab3_ebay_server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getprofile getads addtocart getthecart getmyads finalcheckout placebid login createad register addaddresstodb"/>
+
+  </service>
+</deployment>
